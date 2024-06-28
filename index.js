@@ -1,4 +1,4 @@
-// index.js
+index.js
 import express from 'express';
 import twilio from 'twilio';
 import axios from 'axios';
@@ -37,7 +37,7 @@ app.post('/voice', async (request, response) => {
     try {
       const aiResponse = await query({ question: request.body.SpeechResult });
       console.log('airesponse', aiResponse);
-      twiml.say({voice:'Polly.Arlet-Neural'},aiResponse.text);
+      twiml.say(aiResponse.text);
     } catch (error) {
       console.error('Error querying AI Agent:', error);
       twiml.say('Sorry, there was an error processing your request.');
@@ -50,7 +50,7 @@ app.post('/voice', async (request, response) => {
       speechTimeout: 'auto',
       action: '/voice'
     });
-    gather.say({voice:'Polly.Arlet-Neural'},'Hello my name is absher, How may I help you?');
+    gather.say('Hello my name is absher, How may I help you?');
     twiml.redirect('/voice');
   }
 
@@ -63,3 +63,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
+
+
+
+
